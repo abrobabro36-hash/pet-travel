@@ -486,8 +486,8 @@
                 <div class="service-row field-full">
                     <label>Search via</label>
                     <div class="service-tabs" id="service-tabs">
-                        <button class="service-tab active" data-service="booking">
-                            <span class="tab-flag">🌐</span> Hotellook
+                        <button class="service-tab active" data-service="airbnb">
+                            <span class="tab-flag">🏠</span> Airbnb
                         </button>
                         <button class="service-tab" data-service="ostrovok">
                             <span class="tab-flag">🇷🇺</span> Ostrovok.ru
@@ -559,7 +559,7 @@
 </div>
 
 <footer>
-    <p>© 2026 PetTravel Finder · Powered by <a href="https://search.hotellook.com" target="_blank" rel="noopener">Hotellook</a>, <a href="https://ostrovok.ru" target="_blank" rel="noopener">Ostrovok</a>, <a href="https://travel.yandex.ru" target="_blank" rel="noopener">Яндекс.Путешествия</a>, <a href="https://trip.com" target="_blank" rel="noopener">Trip.com</a></p>
+    <p>© 2026 PetTravel Finder · Powered by <a href="https://www.airbnb.com" target="_blank" rel="noopener">Airbnb</a>, <a href="https://ostrovok.ru" target="_blank" rel="noopener">Ostrovok</a>, <a href="https://travel.yandex.ru" target="_blank" rel="noopener">Яндекс.Путешествия</a>, <a href="https://trip.com" target="_blank" rel="noopener">Trip.com</a></p>
 </footer>
 
 </div><!-- .page -->
@@ -613,27 +613,30 @@
 
         let url = '';
 
-        if (activeService === 'booking') {
+        if (activeService === 'airbnb') {
             /*
-             * Hotellook (search.hotellook.com) — агрегатор, который внутри
-             * показывает цены Booking.com, Expedia и др.
-             * Параметр with_pets=true ГАРАНТИРОВАННО работает через URL —
-             * в отличие от самого Booking.com, где тоггл убран из URL и
-             * управляется только через попап гостей вручную.
-             * shmarker — ваш партнёрский маркер Travelpayouts.
+             * Airbnb — единственный крупный сервис, где фильтр питомцев
+             * ГАРАНТИРОВАННО передаётся через URL.
+             * pets — количество питомцев (передаём 1)
+             * amenities[] = 17  — внутренний код Airbnb "Pets allowed"
+             * Оба параметра вместе дают стабильную фильтрацию.
+             * Booking.com тоггл питомцев намеренно убран из URL и
+             * управляется только вручную через попап — обойти невозможно.
              */
             const p = new URLSearchParams({
-                destination: dest,
-                checkIn:     checkin,
-                checkOut:    checkout,
-                adults:      adults,
-                children:    children,
-                language:    'ru',
-                currency:    'RUB',
-                shmarker:    '733517',
+                query:        dest,
+                checkin:      checkin,
+                checkout:     checkout,
+                adults:       adults,
+                children:     children,
+                search_type:  'filter_change',
             });
-            if (isPets) p.append('with_pets', 'true');
-            url = 'https://search.hotellook.com/hotels?' + p.toString();
+            if (isPets) {
+                p.append('pets',        '1');
+                p.append('amenities[]', '9');   // Pets allowed — Airbnb amenity code
+            }
+            url = 'https://www.airbnb.com/s/' +
+                  encodeURIComponent(dest) + '/homes?' + p.toString();
 
         } else if (activeService === 'ostrovok') {
             /*
