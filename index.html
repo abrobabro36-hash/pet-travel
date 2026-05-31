@@ -487,7 +487,7 @@
                     <label>Search via</label>
                     <div class="service-tabs" id="service-tabs">
                         <button class="service-tab active" data-service="booking">
-                            <span class="tab-flag">🌐</span> Booking.com
+                            <span class="tab-flag">🌐</span> Hotellook
                         </button>
                         <button class="service-tab" data-service="ostrovok">
                             <span class="tab-flag">🇷🇺</span> Ostrovok.ru
@@ -559,7 +559,7 @@
 </div>
 
 <footer>
-    <p>© 2026 PetTravel Finder · Powered by <a href="https://www.booking.com" target="_blank" rel="noopener">Booking.com</a>, <a href="https://ostrovok.ru" target="_blank" rel="noopener">Ostrovok</a>, <a href="https://travel.yandex.ru" target="_blank" rel="noopener">Яндекс.Путешествия</a>, <a href="https://trip.com" target="_blank" rel="noopener">Trip.com</a></p>
+    <p>© 2026 PetTravel Finder · Powered by <a href="https://search.hotellook.com" target="_blank" rel="noopener">Hotellook</a>, <a href="https://ostrovok.ru" target="_blank" rel="noopener">Ostrovok</a>, <a href="https://travel.yandex.ru" target="_blank" rel="noopener">Яндекс.Путешествия</a>, <a href="https://trip.com" target="_blank" rel="noopener">Trip.com</a></p>
 </footer>
 
 </div><!-- .page -->
@@ -615,32 +615,25 @@
 
         if (activeService === 'booking') {
             /*
-             * Booking.com — максимально надёжная передача фильтра питомцев.
-             * pets=1          — включает тоггл "Путешествую с животным"
-             * nflt=...        — дублирует фильтр на уровне facet (hotelfacility=4)
-             * affc=pets       — дополнительный affinity-параметр (A/B-тесты Booking)
-             * Три параметра одновременно гарантируют максимальную стабильность.
+             * Hotellook (search.hotellook.com) — агрегатор, который внутри
+             * показывает цены Booking.com, Expedia и др.
+             * Параметр with_pets=true ГАРАНТИРОВАННО работает через URL —
+             * в отличие от самого Booking.com, где тоггл убран из URL и
+             * управляется только через попап гостей вручную.
+             * shmarker — ваш партнёрский маркер Travelpayouts.
              */
             const p = new URLSearchParams({
-                ss:             dest,
-                checkin_year:   ci_y,
-                checkin_month:  ci_m,
-                checkin_mday:   ci_d,
-                checkout_year:  co_y,
-                checkout_month: co_m,
-                checkout_mday:  co_d,
-                group_adults:   adults,
-                group_children: children,
-                no_rooms:       '1',
-                label:          'pettravel-widget',
-                lang:           'en-us',
+                destination: dest,
+                checkIn:     checkin,
+                checkOut:    checkout,
+                adults:      adults,
+                children:    children,
+                language:    'ru',
+                currency:    'RUB',
+                shmarker:    '733517',
             });
-            if (isPets) {
-                p.append('pets',  '1');
-                p.append('nflt',  'hotelfacility%3D4');
-                p.append('affc',  'pets');
-            }
-            url = 'https://www.booking.com/searchresults.html?' + p.toString();
+            if (isPets) p.append('with_pets', 'true');
+            url = 'https://search.hotellook.com/hotels?' + p.toString();
 
         } else if (activeService === 'ostrovok') {
             /*
