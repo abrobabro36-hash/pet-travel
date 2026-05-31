@@ -15,7 +15,6 @@
             --accent: #9b7fc4;
             --accent-hover: #8666b0;
             --muted: #8a7fa0;
-            --white: #ffffff;
             --nm-in: inset -3px -3px 7px rgba(255,255,255,0.7), inset 3px 3px 7px rgba(160,148,190,0.25);
             --nm-out: -6px -6px 14px rgba(255,255,255,0.7), 6px 6px 14px rgba(160,148,190,0.3);
         }
@@ -29,102 +28,99 @@
             flex-direction: column;
         }
 
+        /* ── PARALLAX BG ── */
+        .parallax-bg {
+            position: fixed;
+            inset: -20%;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 30%, rgba(195,170,230,0.45) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 80% 70%, rgba(230,195,215,0.35) 0%, transparent 60%),
+                radial-gradient(ellipse 70% 50% at 50% 10%, rgba(185,220,210,0.25) 0%, transparent 60%),
+                #e8e0f0;
+            z-index: 0;
+            will-change: transform;
+        }
+
         /* ── HEADER ── */
         header {
-            background: var(--surface);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(237,232,245,0.82);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             padding: 15px 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(160,148,190,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.55);
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .logo { display: flex; align-items: center; gap: 10px; }
 
         .logo-icon {
-            width: 36px;
-            height: 36px;
+            width: 36px; height: 36px;
             background: var(--surface);
             box-shadow: var(--nm-out);
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             font-size: 18px;
         }
 
         .logo-text h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 900;
-            color: var(--text);
-            line-height: 1;
+            font-size: 18px; font-weight: 900;
+            color: var(--text); line-height: 1;
         }
 
         .logo-text span {
-            font-size: 11px;
-            color: var(--muted);
-            font-weight: 300;
-            letter-spacing: 0.05em;
+            font-size: 11px; color: var(--muted);
+            font-weight: 300; letter-spacing: 0.05em;
         }
 
         nav a {
-            text-decoration: none;
-            color: var(--muted);
-            font-size: 14px;
-            font-weight: 500;
-            margin-left: 20px;
-            transition: color 0.2s;
+            text-decoration: none; color: var(--muted);
+            font-size: 14px; font-weight: 500;
+            margin-left: 20px; transition: color 0.2s;
         }
-
         nav a:hover { color: var(--accent); }
+
+        /* ── PAGE WRAPPER ── */
+        .page {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
 
         /* ── HERO ── */
         .hero {
             text-align: center;
             padding: 40px 20px 25px;
-            position: relative;
         }
 
         .hero h2 {
             font-family: 'Playfair Display', serif;
             font-size: clamp(32px, 5vw, 46px);
-            font-weight: 900;
-            color: var(--text);
-            line-height: 1.2;
-            margin-bottom: 12px;
+            font-weight: 900; color: var(--text);
+            line-height: 1.2; margin-bottom: 12px;
         }
 
-        .hero h2 em {
-            font-style: italic;
-            color: var(--accent);
-        }
+        .hero h2 em { font-style: italic; color: var(--accent); }
 
         .hero-badge {
             background: var(--surface);
             box-shadow: var(--nm-out);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--accent);
-            display: inline-block;
+            padding: 8px 20px; border-radius: 20px;
+            font-size: 13px; font-weight: 700;
+            color: var(--accent); display: inline-block;
             margin-bottom: 16px;
         }
 
         .hero p {
-            color: var(--muted);
-            font-size: 16px;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.5;
+            color: var(--muted); font-size: 16px;
+            max-width: 600px; margin: 0 auto; line-height: 1.5;
         }
 
         /* ── LAYOUT ── */
@@ -140,129 +136,157 @@
 
         /* ── ADS ── */
         .ads-side {
-            width: 240px;
-            min-width: 240px;
+            width: 240px; min-width: 240px;
             background: var(--surface);
             border-radius: 20px;
             box-shadow: var(--nm-out);
-            display: flex;
-            align-items: center;
+            display: flex; align-items: center;
             justify-content: center;
             color: var(--muted);
             height: 500px;
-            position: sticky;
-            top: 95px;
+            position: sticky; top: 75px;
             text-align: center;
-            padding: 15px;
-            font-size: 13px;
+            padding: 15px; font-size: 13px;
         }
 
         /* ── CONTENT CENTER ── */
-        .content-center {
-            flex: 1;
-            min-width: 0;
-        }
+        .content-center { flex: 1; min-width: 0; }
 
-        /* ── УВЕЛИЧЕННАЯ ФОРМА ПОИСКА ── */
-        .widget-card {
+        /* ── CARDS ── */
+        .widget-card, .tips-card, .seo-card {
             background: var(--surface);
             border-radius: 24px;
             box-shadow: var(--nm-out);
-            padding: 30px; /* Увеличили внутренние отступы */
+            padding: 28px;
             margin-bottom: 24px;
         }
 
         .widget-card-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
+            display: flex; align-items: center;
+            gap: 10px; margin-bottom: 22px;
         }
 
         .widget-card-header h3 {
             font-family: 'Playfair Display', serif;
-            color: var(--text);
-            font-size: 20px; /* Крупнее заголовок карточки */
-            font-weight: 700;
+            color: var(--text); font-size: 20px; font-weight: 700;
         }
 
-        .widget-card-header span {
-            font-size: 22px;
-        }
+        .widget-card-header span { font-size: 22px; }
 
+        /* ── SEARCH FIELDS ── */
         .search-fields {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px; /* Чуть больше расстояние между полями */
+            gap: 16px;
         }
 
-        .field-full {
-            grid-column: span 3;
-        }
+        .field-full { grid-column: span 3; }
 
-        .field-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
+        .field-group { display: flex; flex-direction: column; gap: 6px; }
 
         .field-group label {
-            font-size: 11px; /* Сделали более читаемым */
-            font-weight: 700;
+            font-size: 11px; font-weight: 700;
             color: var(--muted);
             letter-spacing: 0.07em;
             text-transform: uppercase;
             padding-left: 4px;
         }
 
-        .field-group input, .field-group select {
-            border: none;
-            border-radius: 14px;
+        .field-group input,
+        .field-group select {
+            border: none; border-radius: 14px;
             padding: 12px 16px;
             font-family: 'DM Sans', sans-serif;
-            font-size: 15px; /* Увеличили размер шрифта внутри полей */
-            color: var(--text);
+            font-size: 15px; color: var(--text);
             background: var(--surface);
             box-shadow: var(--nm-in);
             outline: none;
-            width: 100%;
-            height: 48px; /* Сделали поля выше и солиднее */
+            width: 100%; height: 48px;
             transition: box-shadow 0.2s;
+            -webkit-appearance: none;
+            cursor: pointer;
         }
 
-        .field-group input:focus, .field-group select:focus {
+        .field-group input:focus,
+        .field-group select:focus {
             box-shadow: var(--nm-out);
         }
 
-        /* Строка управления */
+        /* ── SERVICE PICKER ── */
+        .service-row {
+            grid-column: span 3;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .service-row > label {
+            font-size: 11px; font-weight: 700;
+            color: var(--muted);
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            padding-left: 4px;
+        }
+
+        .service-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .service-tab {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 16px;
+            border-radius: 12px;
+            background: var(--surface);
+            box-shadow: var(--nm-in);
+            cursor: pointer;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px; font-weight: 700;
+            color: var(--muted);
+            transition: box-shadow 0.18s, color 0.18s;
+            user-select: none;
+        }
+
+        .service-tab:hover {
+            box-shadow: var(--nm-out);
+            color: var(--text);
+        }
+
+        .service-tab.active {
+            box-shadow: var(--nm-out);
+            color: var(--accent);
+        }
+
+        .service-tab .tab-flag { font-size: 16px; }
+
+        /* ── CONTROLS ROW ── */
         .controls-row {
             grid-column: span 3;
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Растягивает тоггл влево, кнопку вправо */
-            margin-top: 12px;
+            justify-content: space-between;
+            margin-top: 4px;
+            gap: 16px;
         }
 
+        /* ── TOGGLE ── */
         #pets-toggle {
             position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-            appearance: none;
-            -webkit-appearance: none;
+            opacity: 0; width: 0; height: 0;
+            appearance: none; -webkit-appearance: none;
         }
 
         .toggle-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            user-select: none;
+            display: flex; align-items: center;
+            gap: 12px; cursor: pointer; user-select: none;
         }
 
         .toggle-label {
-            font-size: 13px; /* Сделали текст тоггла крупнее */
-            font-weight: 700;
+            font-size: 13px; font-weight: 700;
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -270,23 +294,21 @@
 
         .toggle-switch {
             position: relative;
-            width: 46px;
-            height: 24px;
+            width: 46px; height: 24px;
             background: var(--surface);
             box-shadow: var(--nm-in);
             border-radius: 12px;
             transition: background 0.3s;
+            flex-shrink: 0;
         }
 
         .toggle-switch::after {
             content: '';
             position: absolute;
-            width: 18px;
-            height: 18px;
+            width: 18px; height: 18px;
             border-radius: 50%;
             background: var(--muted);
-            top: 3px;
-            left: 3px;
+            top: 3px; left: 3px;
             transition: transform 0.3s, background 0.3s;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
@@ -296,45 +318,34 @@
             background: var(--accent);
         }
 
-        /* Крупная кнопка */
+        /* ── SEARCH BUTTON ── */
         .search-btn {
             background: var(--surface);
             color: var(--accent);
-            border: none;
-            border-radius: 14px;
-            padding: 0 36px;
-            height: 48px; /* Высота кнопки совпадает с инпутами */
+            border: none; border-radius: 14px;
+            padding: 0 36px; height: 48px;
             font-family: 'DM Sans', sans-serif;
-            font-size: 15px; /* Текст на кнопке крупнее */
-            font-weight: 700;
+            font-size: 15px; font-weight: 700;
             cursor: pointer;
             box-shadow: var(--nm-out);
-            transition: transform 0.1s, box-shadow 0.1s;
+            transition: transform 0.1s, box-shadow 0.1s, color 0.15s;
+            white-space: nowrap;
         }
 
         .search-btn:hover {
-            box-shadow: -2px -2px 5px rgba(255,255,255,0.7), 2px 2px 5px rgba(160,148,190,0.2);
             color: var(--accent-hover);
+            box-shadow: -3px -3px 7px rgba(255,255,255,0.8), 3px 3px 7px rgba(160,148,190,0.35);
         }
 
         .search-btn:active {
             box-shadow: var(--nm-in);
+            transform: scale(0.98);
         }
 
         /* ── TIPS ── */
-        .tips-card {
-            background: var(--surface);
-            border-radius: 24px;
-            box-shadow: var(--nm-out);
-            padding: 26px;
-            margin-bottom: 24px;
-        }
-
         .tips-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            color: var(--text);
-            margin-bottom: 16px;
+            font-size: 20px; color: var(--text); margin-bottom: 16px;
         }
 
         .tips-grid {
@@ -353,50 +364,30 @@
         .tip-item .tip-emoji { font-size: 20px; margin-bottom: 6px; }
 
         .tip-item h4 {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 6px;
+            font-size: 13px; font-weight: 700;
+            color: var(--text); margin-bottom: 6px;
         }
 
-        .tip-item p {
-            font-size: 12px;
-            color: var(--muted);
-            line-height: 1.5;
-        }
+        .tip-item p { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
         /* ── SEO ── */
-        .seo-card {
-            background: var(--surface);
-            border-radius: 24px;
-            box-shadow: var(--nm-out);
-            padding: 26px;
-        }
-
         .seo-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            color: var(--text);
-            margin-bottom: 10px;
+            font-size: 18px; color: var(--text); margin-bottom: 10px;
         }
 
         .seo-card p, .seo-card li {
-            font-size: 13px;
-            line-height: 1.6;
-            color: var(--muted);
+            font-size: 13px; line-height: 1.6; color: var(--muted);
         }
 
-        .seo-card ul {
-            margin: 8px 0 12px 18px;
-        }
-
+        .seo-card ul { margin: 8px 0 12px 18px; }
         .seo-card li { margin-bottom: 6px; }
 
         /* ── FOOTER ── */
         footer {
+            position: relative; z-index: 1;
             text-align: center;
-            padding: 24px;
-            color: var(--muted);
+            padding: 24px; color: var(--muted);
             font-size: 12px;
             border-top: 1px solid rgba(160,148,190,0.1);
             margin-top: auto;
@@ -405,22 +396,24 @@
         footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
 
         /* ── RESPONSIVE ── */
-        @media (max-width: 1040px) {
-            .ads-side { display: none; }
-        }
+        @media (max-width: 1040px) { .ads-side { display: none; } }
 
         @media (max-width: 650px) {
             header { padding: 12px 20px; }
             nav { display: none; }
             .search-fields { grid-template-columns: 1fr; }
-            .field-full, .controls-row { grid-column: span 1; }
-            .controls-row { flex-direction: column; align-items: stretch; gap: 16px; }
+            .field-full, .service-row, .controls-row { grid-column: span 1; }
+            .controls-row { flex-direction: column; align-items: stretch; }
             .search-btn { height: 48px; }
             .tips-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+
+<div class="parallax-bg" id="parallax-bg"></div>
+
+<div class="page">
 
 <header>
     <div class="logo">
@@ -456,49 +449,68 @@
                 <span>🏨</span>
                 <h3>Search Pet-Friendly Hotels</h3>
             </div>
-            <div class="widget-body">
-                <div class="search-widget">
-                    <div class="search-fields">
-                        <div class="field-group field-full">
-                            <label>Destination</label>
-                            <input type="text" id="dest" placeholder="City, hotel, region..." />
-                        </div>
-                        <div class="field-group">
-                            <label>Check-in</label>
-                            <input type="date" id="checkin" />
-                        </div>
-                        <div class="field-group">
-                            <label>Check-out</label>
-                            <input type="date" id="checkout" />
-                        </div>
-                        <div class="field-group">
-                            <label>Adults</label>
-                            <select id="adults">
-                                <option value="1">1 Adult</option>
-                                <option value="2" selected>2 Adults</option>
-                                <option value="3">3 Adults</option>
-                                <option value="4">4 Adults</option>
-                            </select>
-                        </div>
-                        <div class="field-group">
-                            <label>Children</label>
-                            <select id="children">
-                                <option value="0" selected>0 Children</option>
-                                <option value="1">1 Child</option>
-                                <option value="2">2 Children</option>
-                            </select>
-                        </div>
+            <div class="search-fields">
 
-                        <div class="controls-row">
-                            <label class="toggle-container" for="pets-toggle">
-                                <input type="checkbox" id="pets-toggle" checked />
-                                <div class="toggle-switch"></div>
-                                <span class="toggle-label">With Pets 🐾</span>
-                            </label>
-                            <button class="search-btn" onclick="searchHotels()">Search →</button>
-                        </div>
+                <div class="field-group field-full">
+                    <label>Destination</label>
+                    <input type="text" id="dest" placeholder="City, hotel, region..." />
+                </div>
+
+                <div class="field-group">
+                    <label>Check-in</label>
+                    <input type="date" id="checkin" />
+                </div>
+                <div class="field-group">
+                    <label>Check-out</label>
+                    <input type="date" id="checkout" />
+                </div>
+                <div class="field-group">
+                    <label>Adults</label>
+                    <select id="adults">
+                        <option value="1">1 Adult</option>
+                        <option value="2" selected>2 Adults</option>
+                        <option value="3">3 Adults</option>
+                        <option value="4">4 Adults</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label>Children</label>
+                    <select id="children">
+                        <option value="0" selected>0 Children</option>
+                        <option value="1">1 Child</option>
+                        <option value="2">2 Children</option>
+                    </select>
+                </div>
+
+                <!-- SERVICE PICKER -->
+                <div class="service-row field-full">
+                    <label>Search via</label>
+                    <div class="service-tabs" id="service-tabs">
+                        <button class="service-tab active" data-service="booking">
+                            <span class="tab-flag">🌐</span> Booking.com
+                        </button>
+                        <button class="service-tab" data-service="ostrovok">
+                            <span class="tab-flag">🇷🇺</span> Ostrovok.ru
+                        </button>
+                        <button class="service-tab" data-service="yandex">
+                            <span class="tab-flag">🟡</span> Яндекс.Путешествия
+                        </button>
+                        <button class="service-tab" data-service="trip">
+                            <span class="tab-flag">✈️</span> Trip.com
+                        </button>
                     </div>
                 </div>
+
+                <!-- CONTROLS: toggle + search btn -->
+                <div class="controls-row">
+                    <label class="toggle-container" for="pets-toggle">
+                        <input type="checkbox" id="pets-toggle" checked />
+                        <div class="toggle-switch"></div>
+                        <span class="toggle-label">With Pets 🐾</span>
+                    </label>
+                    <button class="search-btn" onclick="searchHotels()">Search →</button>
+                </div>
+
             </div>
         </div>
 
@@ -531,12 +543,11 @@
         <div class="seo-card">
             <h3>Why use PetTravel Finder?</h3>
             <p>Traveling with pets can be stressful when finding accommodation. Many hotels have hidden fees or breed restrictions. Our system forces automated filtering to help you find hotels, apartments, and guest houses worldwide that genuinely welcome pets.</p>
-
             <h3 style="margin-top:12px">How to book a pet-friendly room:</h3>
             <ul>
                 <li>Enter your destination city and travel dates in the search bar above.</li>
-                <li>Use filters on the target page to sort properties by price or distance.</li>
-                <li><strong>Important:</strong> Always leave a note during booking stating that you travel with animals to ensure a hassle-free check-in.</li>
+                <li>Choose your preferred booking platform and toggle "With Pets" on.</li>
+                <li><strong>Important:</strong> Always leave a note during booking stating you travel with animals to ensure a hassle-free check-in.</li>
             </ul>
         </div>
     </div>
@@ -548,54 +559,139 @@
 </div>
 
 <footer>
-    <p>© 2026 PetTravel Finder · Hotel search powered by <a href="https://www.booking.com" target="_blank" rel="noopener">Booking.com</a></p>
+    <p>© 2026 PetTravel Finder · Powered by <a href="https://www.booking.com" target="_blank" rel="noopener">Booking.com</a>, <a href="https://ostrovok.ru" target="_blank" rel="noopener">Ostrovok</a>, <a href="https://travel.yandex.ru" target="_blank" rel="noopener">Яндекс.Путешествия</a>, <a href="https://trip.com" target="_blank" rel="noopener">Trip.com</a></p>
 </footer>
 
+</div><!-- .page -->
+
 <script>
+    /* ── Parallax ── */
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                document.getElementById('parallax-bg').style.transform =
+                    'translateY(' + (window.scrollY * 0.3) + 'px)';
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    /* ── Default dates ── */
     const today = new Date();
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
     const fmt = d => d.toISOString().split('T')[0];
-    document.getElementById('checkin').value = fmt(today);
+    document.getElementById('checkin').value  = fmt(today);
     document.getElementById('checkout').value = fmt(tomorrow);
 
+    /* ── Service tabs ── */
+    let activeService = 'booking';
+
+    document.getElementById('service-tabs').addEventListener('click', e => {
+        const tab = e.target.closest('.service-tab');
+        if (!tab) return;
+        document.querySelectorAll('.service-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        activeService = tab.dataset.service;
+    });
+
+    /* ── Search function ── */
     function searchHotels() {
         const dest     = document.getElementById('dest').value.trim();
         const checkin  = document.getElementById('checkin').value;
         const checkout = document.getElementById('checkout').value;
-        const adults   = document.getElementById('adults').value   || '2';
+        const adults   = document.getElementById('adults').value || '2';
         const children = document.getElementById('children').value || '0';
         const isPets   = document.getElementById('pets-toggle').checked;
 
-        if (!dest) {
-            document.getElementById('dest').focus();
-            return;
+        if (!dest) { document.getElementById('dest').focus(); return; }
+
+        const [ci_y, ci_m, ci_d] = checkin.split('-');
+        const [co_y, co_m, co_d] = checkout.split('-');
+
+        let url = '';
+
+        if (activeService === 'booking') {
+            /*
+             * Booking.com — максимально надёжная передача фильтра питомцев.
+             * pets=1          — включает тоггл "Путешествую с животным"
+             * nflt=...        — дублирует фильтр на уровне facet (hotelfacility=4)
+             * affc=pets       — дополнительный affinity-параметр (A/B-тесты Booking)
+             * Три параметра одновременно гарантируют максимальную стабильность.
+             */
+            const p = new URLSearchParams({
+                ss:             dest,
+                checkin_year:   ci_y,
+                checkin_month:  ci_m,
+                checkin_mday:   ci_d,
+                checkout_year:  co_y,
+                checkout_month: co_m,
+                checkout_mday:  co_d,
+                group_adults:   adults,
+                group_children: children,
+                no_rooms:       '1',
+                label:          'pettravel-widget',
+                lang:           'en-us',
+            });
+            if (isPets) {
+                p.append('pets',  '1');
+                p.append('nflt',  'hotelfacility%3D4');
+                p.append('affc',  'pets');
+            }
+            url = 'https://www.booking.com/searchresults.html?' + p.toString();
+
+        } else if (activeService === 'ostrovok') {
+            /*
+             * Ostrovok.ru — поддерживает параметр &with_pets=1 в строке поиска.
+             * Даты: check_in / check_out в формате YYYY-MM-DD.
+             * adults / children — прямые параметры.
+             */
+            const p = new URLSearchParams({
+                query:      dest,
+                check_in:   checkin,
+                check_out:  checkout,
+                adults:     adults,
+                children:   children,
+            });
+            if (isPets) p.append('with_pets', '1');
+            url = 'https://ostrovok.ru/hotel/search/?' + p.toString();
+
+        } else if (activeService === 'yandex') {
+            /*
+             * Яндекс.Путешествия — передаём через /hotels/ с параметрами checkin/checkout.
+             * amenities=PETS — стандартный фильтр удобств на Яндексе для питомцев.
+             */
+            const p = new URLSearchParams({
+                adults:   adults,
+                children: children,
+                checkin:  checkin,
+                checkout: checkout,
+            });
+            if (isPets) p.append('amenities', 'PETS');
+            url = 'https://travel.yandex.ru/hotels/' +
+                  encodeURIComponent(dest).replace(/%20/g, '+') +
+                  '/?' + p.toString();
+
+        } else if (activeService === 'trip') {
+            /*
+             * Trip.com — использует /hotels/list с параметрами.
+             * city — название города, dateRange — даты через дефис.
+             * hotelStar=0 означает "любые", petFriendly=1 — фильтр питомцев.
+             */
+            const p = new URLSearchParams({
+                city:      dest,
+                checkin:   checkin,
+                checkout:  checkout,
+                adult:     adults,
+                children:  children,
+            });
+            if (isPets) p.append('petFriendly', '1');
+            url = 'https://www.trip.com/hotels/list?' + p.toString();
         }
 
-        const [ci_y, ci_m, ci_d]   = checkin.split('-');
-        const [co_y, co_m, co_d]   = checkout.split('-');
-
-        const base   = 'https://www.booking.com/searchresults.html';
-        const params = new URLSearchParams({
-            ss:             dest,
-            checkin_year:   ci_y,
-            checkin_month:  ci_m,
-            checkin_mday:   ci_d,
-            checkout_year:  co_y,
-            checkout_month: co_m,
-            checkout_mday:  co_d,
-            group_adults:   adults,
-            group_children: children,
-            no_rooms:       '1',
-            label:          'pettravel-widget',
-            lang:           'en-us',
-        });
-
-        if (isPets) {
-            params.append('pets', '1');
-        }
-
-        window.open(`${base}?${params}`, '_blank', 'noopener');
+        if (url) window.open(url, '_blank', 'noopener');
     }
 
     document.getElementById('dest').addEventListener('keydown', e => {
